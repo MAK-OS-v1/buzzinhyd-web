@@ -1,42 +1,421 @@
+/* =========================================================
+   BUZZINHYD — LUXURY LIGHT DESIGN SYSTEM
+   Bottega Veneta editorial · Warm ivory · Burnished gold · Deep ink
+   ========================================================= */
+
+/* ── CSS Variables ─────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bh-black:     #1A1208;   /* text only, never backgrounds */
+  --bh-charcoal:  #2C2416;   /* footer bg, dark moments */
+  --bh-warm:      #FAF6EF;   /* primary page background — warm ivory */
+  --bh-cream:     #FDF9F3;   /* card / section background */
+  --bh-gold:      #A07830;   /* primary accent — burnished gold */
+  --bh-gold-soft: #C9A86C;   /* hover states, secondary gold */
+  --bh-red:       #8B2020;   /* reserved — use sparingly */
+  --bh-text:      #1A1208;   /* primary body text — near black */
+  --bh-muted:     #6B5E4A;   /* captions, secondary — warm, never cool */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── Reset ─────────────────────────────────────────────── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: auto; /* Lenis overrides this */
+  font-size: 16px;
 }
 
-html,
 body {
-  max-width: 100vw;
+  background-color: var(--bh-warm);
+  color: var(--bh-text);
+  font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* ── Selection ─────────────────────────────────────────── */
+::selection {
+  background: rgba(160, 120, 48, 0.18);
+  color: var(--bh-text);
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+/* ── Scrollbar ─────────────────────────────────────────── */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--bh-warm); }
+::-webkit-scrollbar-thumb { background: var(--bh-gold); border-radius: 2px; }
+
+/* ── Typography Classes ─────────────────────────────────── */
+.font-display {
+  font-family: var(--font-cormorant), 'Cormorant Garamond', serif;
+  font-weight: 300;
+}
+.font-mono {
+  font-family: var(--font-space-mono), 'Space Mono', monospace;
+  font-weight: 400;
+}
+.font-body {
+  font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
 }
 
-a {
-  color: inherit;
+/* ── Layout ─────────────────────────────────────────────── */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+@media (min-width: 768px)  { .container { padding: 0 48px; } }
+@media (min-width: 1200px) { .container { padding: 0 80px; } }
+
+.section { padding: 120px 0; }
+@media (max-width: 768px) { .section { padding: 80px 0; } }
+
+/* ── Buttons ─────────────────────────────────────────────── */
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bh-gold);
+  color: var(--bh-warm);
+  font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 18px 48px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: 0.02em;
+}
+.btn-gold:hover {
+  background: var(--bh-charcoal);
+  color: var(--bh-warm);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--bh-gold);
+  font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 14px 32px;
+  border: 1.5px solid var(--bh-gold);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: 0.04em;
+}
+.btn-outline:hover {
+  background: var(--bh-gold);
+  color: var(--bh-warm);
+}
+
+/* ── Gold Dividers ───────────────────────────────────────── */
+.gold-rule {
+  display: block;
+  height: 1px;
+  background: var(--bh-gold);
+  opacity: 0.3;
+  margin: 24px 0;
+}
+.gold-rule-center {
+  display: block;
+  width: 60px;
+  height: 1px;
+  background: var(--bh-gold);
+  opacity: 0.5;
+  margin: 24px auto;
+}
+
+/* ── Animations ─────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+/* ── CSS Marquee (no JS, mobile-safe) ───────────────────── */
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+.marquee-track--left {
+  animation: marquee-left 30s linear infinite;
+}
+.marquee-track--right {
+  animation: marquee-right 38s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
+
+/* image marquee strip */
+@keyframes strip-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes strip-right {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+/* ── Hero Animations ─────────────────────────────────────── */
+.hero-label   { animation: fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.1s both; }
+.hero-line-1  { animation: fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.25s both; }
+.hero-line-2  { animation: fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.4s both; }
+.hero-sub     { animation: fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.6s both; }
+.hero-buttons { animation: fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.75s both; }
+
+/* ── Shimmer Skeleton ────────────────────────────────────── */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--bh-cream) 0%,
+    rgba(160,120,48,0.05) 50%,
+    var(--bh-cream) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.8s ease-in-out infinite;
+}
+
+/* ── Cards ───────────────────────────────────────────────── */
+.bh-card {
+  background: var(--bh-cream);
+  border: 1px solid rgba(160, 120, 48, 0.12);
+  box-shadow: 0 4px 32px rgba(160, 120, 48, 0.08);
+  transition: box-shadow 0.5s ease, transform 0.5s ease;
+}
+.bh-card:hover {
+  box-shadow: 0 12px 48px rgba(160, 120, 48, 0.16);
+}
+
+/* ── Three.js Canvas ─────────────────────────────────────── */
+.three-canvas-wrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+@media (max-width: 767px) {
+  .three-canvas-wrapper { display: none; }
+}
+
+/* ── Mobile Hero Fallback ────────────────────────────────── */
+.mobile-hero-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 70% 60% at 50% 40%,
+    rgba(160,120,48,0.08) 0%,
+    transparent 70%
+  ), var(--bh-warm);
+}
+@media (min-width: 768px) {
+  .mobile-hero-bg { display: none; }
+}
+
+/* ── Custom Cursor ───────────────────────────────────────── */
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  pointer-events: none;
+  z-index: 99999;
+  border-radius: 50%;
+}
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--bh-text);
+  transform: translate(-50%, -50%);
+}
+.cursor-ring {
+  width: 32px;
+  height: 32px;
+  border: 1.5px solid rgba(26, 18, 8, 0.3);
+  transform: translate(-50%, -50%);
+}
+@media (pointer: coarse), (max-width: 767px) {
+  .cursor-dot, .cursor-ring { display: none; }
+}
+
+/* ── Scroll Progress Bar ─────────────────────────────────── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: var(--bh-gold);
+  z-index: 9999;
+  transform-origin: left;
+}
+
+/* ── Scroll Chevron ──────────────────────────────────────── */
+.scroll-chevron {
+  animation: bounce 2s ease-in-out infinite;
+}
+
+/* ── AOS Overrides ───────────────────────────────────────── */
+[data-aos] { will-change: transform, opacity; }
+
+/* ── Stats Strip ─────────────────────────────────────────── */
+.stats-strip {
+  background: var(--bh-gold);
+  padding: 80px 0;
+}
+.stats-number {
+  color: var(--bh-warm);
+  font-family: var(--font-cormorant), serif;
+  font-size: clamp(64px, 8vw, 96px);
+  font-weight: 300;
+  line-height: 1;
+}
+.stats-label {
+  color: rgba(250, 246, 239, 0.75);
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 8px;
+  letter-spacing: 0.04em;
+}
+
+/* ── Philosophy Section ──────────────────────────────────── */
+.philosophy-panel {
+  border-left: 3px solid var(--bh-gold);
+  padding-left: 40px;
+}
+
+/* ── Accordion ───────────────────────────────────────────── */
+.accordion-item {
+  border-top: 1px solid rgba(160, 120, 48, 0.15);
+}
+.accordion-item:last-child {
+  border-bottom: 1px solid rgba(160, 120, 48, 0.15);
+}
+.accordion-open {
+  background: var(--bh-warm);
+  border-left: 3px solid var(--bh-gold);
+}
+
+/* ── Form ────────────────────────────────────────────────── */
+.form-field {
+  position: relative;
+  margin-bottom: 32px;
+}
+.form-field label {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 13px;
+  color: var(--bh-muted);
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+.form-field input:focus ~ label,
+.form-field input:not(:placeholder-shown) ~ label,
+.form-field textarea:focus ~ label,
+.form-field textarea:not(:placeholder-shown) ~ label,
+.form-field select:focus ~ label {
+  top: -18px;
+  font-size: 11px;
+  color: var(--bh-gold);
+  letter-spacing: 0.1em;
+}
+.form-field input,
+.form-field textarea,
+.form-field select {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--bh-gold);
+  padding: 12px 0;
+  color: var(--bh-text);
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus {
+  border-bottom: 2px solid var(--bh-gold);
+}
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: transparent;
+}
+.form-field textarea {
+  resize: none;
+  min-height: 120px;
+}
+.form-field select {
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+.form-field select option {
+  background: var(--bh-cream);
+  color: var(--bh-text);
+}
+
+/* ── CTA Section ─────────────────────────────────────────── */
+.cta-section {
+  background: var(--bh-cream);
+  border-top: 1px solid rgba(160, 120, 48, 0.2);
+  border-bottom: 1px solid rgba(160, 120, 48, 0.2);
+}
+
+/* ── Footer ──────────────────────────────────────────────── */
+.site-footer {
+  background: var(--bh-charcoal);
+  border-top: 1px solid var(--bh-gold);
+  color: var(--bh-warm);
+}
+.footer-muted {
+  color: rgba(250, 246, 239, 0.55);
+}
+.footer-link {
+  color: rgba(250, 246, 239, 0.75);
   text-decoration: none;
+  transition: color 0.3s ease;
+}
+.footer-link:hover {
+  color: var(--bh-gold-soft);
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+/* ── Work Page Hover Overlay ─────────────────────────────── */
+.work-card-overlay {
+  background: linear-gradient(to top, rgba(26,18,8,0.9) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.work-card:hover .work-card-overlay {
+  opacity: 1;
+}
+
+/* ── Will-change for animated elements ───────────────────── */
+.will-transform {
+  will-change: transform;
 }

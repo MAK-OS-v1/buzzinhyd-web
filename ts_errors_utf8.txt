@@ -1,0 +1,3 @@
+﻿src/app/page.tsx(279,53): error TS2345: Argument of type 'MouseEvent<HTMLDivElement, MouseEvent>' is not assignable to parameter of type 'MouseEvent<HTMLAnchorElement, MouseEvent>'.
+  Type 'HTMLDivElement' is missing the following properties from type 'HTMLAnchorElement': charset, coords, download, hreflang, and 21 more.
+src/components/ui/ScrollProgressBar.tsx(34,16): error TS2561: Object literal may only specify known properties, but 'scaleX' does not exist in type 'Properties<string | number, string & {}>'. Did you mean to write 'scale'?
