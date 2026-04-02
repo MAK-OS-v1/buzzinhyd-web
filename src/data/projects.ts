@@ -5,83 +5,98 @@ export interface Project {
   client: string
   year: string
   description: string
-  images: { src: string; alt: string; priority?: boolean }[]
+  heroImage: string
+  gallery: string[]
 }
 
 export const projects: Project[] = [
   {
     slug: 'breads-viennoiserie',
     title: 'Breads & Viennoiserie',
-    category: 'Food Photography',
-    client: 'Local Artisan Bakery',
-    year: '2025',
-    description: 'A focused campaign highlighting the flaky textures and golden hues of freshly baked sourdough and croissants. Shot on location to capture the early morning bakery atmosphere.',
-    images: [
-      { src: '/images/placeholder.jpg', alt: 'Fresh croissants', priority: true },
-      { src: '/images/placeholder.jpg', alt: 'Sourdough scoring' },
-      { src: '/images/placeholder.jpg', alt: 'Bakery interior' }
-    ]
-  },
-  {
-    slug: 'michelin-star-collab',
-    title: 'Chef Collaboration',
-    category: 'Campaigns',
-    client: 'The Grand Hotel',
+    category: 'Photography',
+    client: 'Roast Cafe',
     year: '2024',
-    description: 'A multi-channel marketing campaign for a limited-time menu designed by a visiting Michelin-starred chef. Delivered a full suite of photography, teaser videos, and social graphics.',
-    images: [
-      { src: '/images/placeholder.jpg', alt: 'Chef plating dish', priority: true },
-      { src: '/images/placeholder.jpg', alt: 'Signature dish close up' }
-    ]
+    heroImage: '/images/pastry-butter-croissant.jpg',
+    gallery: [
+      '/images/pastry-cinnamon-roll.jpg',
+      '/images/pastry-pain-raisin.jpg',
+      '/images/pastry-chocolate-croissant.jpg',
+      '/images/bts-studio-softbox.jpg',
+    ],
+    description: 'A complete photography campaign for Roast Cafe\'s artisan bakery range. A focused campaign highlighting the flaky textures and golden layers of freshly baked croissants and pastries.'
   },
   {
-    slug: 'ramadan-haleem',
-    title: 'Ramadan Haleem',
-    category: 'Videography',
-    client: 'Heritage Cafe',
+    slug: 'michelin-chef-collab',
+    title: 'The Michelin Collaboration',
+    category: 'Chef Campaigns',
+    client: 'Roast Cafe',
     year: '2024',
-    description: 'Capturing the deeply rooted cultural significance of Hyderabad\'s traditional Haleem preparation. A cinematic short documentary style reel that drove massive engagement.',
-    images: [
-      { src: '/images/placeholder.jpg', alt: 'Haleem preparation', priority: true },
-      { src: '/images/placeholder.jpg', alt: 'Serving haleem' },
-      { src: '/images/placeholder.jpg', alt: 'Sunset cafe exterior' }
-    ]
+    heroImage: '/images/chef-michelin-portrait.jpg',
+    gallery: [
+      '/images/bts-kitchen-shoot-wide.jpg',
+      '/images/dessert-roast-cube.jpg',
+      '/images/dessert-choux-stack.jpg',
+      '/images/bts-live-kitchen-flash.jpg',
+    ],
+    description: 'A multi-channel campaign for a limited-time menu by a visiting Michelin-starred chef. Photography, reels, and social graphics delivered.'
   },
   {
-    slug: 'daily-creative',
+    slug: 'holiday-chefs-table',
+    title: 'The Holiday Chef\'s Table',
+    category: 'Campaign',
+    client: 'Roast Cafe',
+    year: '2024',
+    heroImage: '/images/bts-fine-dining-spread.jpg',
+    gallery: [
+      '/images/bts-table-setting-elegant.jpg',
+      '/images/chef-plating-dark.jpg',
+      '/images/bts-ipad-pasta-flatlay.jpg',
+    ],
+    description: 'An intimate holiday dining event captured across stills and video — from the kitchen to the table.'
+  },
+  {
+    slug: 'daily-creative-stories',
     title: 'Daily Creative Stories',
     category: 'Social Content',
-    client: 'Urban Brew',
-    year: '2023 - Present',
-    description: 'Ongoing monthly content creation focused on lifestyle, community, and the daily ritual of coffee. Designed specifically to build a loyal Instagram following.',
-    images: [
-      { src: '/images/placeholder.jpg', alt: 'Latte art pouring', priority: true },
-      { src: '/images/placeholder.jpg', alt: 'Customer reading book' }
-    ]
+    client: 'Roast Cafe',
+    year: '2024',
+    heroImage: '/images/campaign-valentines-bear.jpg',
+    gallery: [
+      '/images/campaign-roast-new-desserts.jpg',
+      '/images/campaign-valentines-bear.jpg',
+      '/images/campaign-choco-strawberry.jpg',
+      '/images/campaign-strawberry-display.jpg',
+    ],
+    description: `Keeping brands alive every single day. We produce daily Instagram stories — seasonal drops, product highlights, and creative campaigns — engineered to hold attention and drive repeat visits. Aesthetic content gets likes. Storytelling content gets customers.`
   },
   {
-    slug: 'brand-identity',
-    title: 'Restaurant Identity',
-    category: 'Campaigns',
-    client: 'Osteria',
+    slug: 'valentines-campaign',
+    title: "Valentine's Edition",
+    category: 'Campaign',
+    client: 'Roast Cafe',
     year: '2024',
-    description: 'Visual identity overhaul accompanied by a new menu shoot. We translated their rustic Italian heritage into a modern digital presence.',
-    images: [
-      { src: '/images/placeholder.jpg', alt: 'New menu design', priority: true },
-      { src: '/images/placeholder.jpg', alt: 'Pasta dish from above' },
-      { src: '/images/placeholder.jpg', alt: 'Exterior signage' }
-    ]
+    heroImage: '/images/campaign-valentines-bear.jpg',
+    gallery: [
+      '/images/campaign-roast-new-desserts.jpg',
+      '/images/dessert-roast-oval.jpg',
+    ],
+    description: 'Concept, styling, photography and social content for a limited Valentine\'s Day chocolate collection.'
   },
   {
-    slug: 'social-strategy',
-    title: 'Platform Domination',
-    category: 'Social Content',
-    client: 'Spice Route',
+    slug: 'product-studio-series',
+    title: 'Studio Product Series',
+    category: 'Photography',
+    client: 'Roast Cafe',
     year: '2024',
-    description: 'A high-frequency short-form video strategy across Instagram Reels and YouTube Shorts that resulted in a 300% increase in weekly footfall.',
-    images: [
-      { src: '/images/placeholder.jpg', alt: 'Reels thumbnail style', priority: true },
-      { src: '/images/placeholder.jpg', alt: 'Behind the scenes video shoot' }
-    ]
-  }
+    heroImage: '/images/dessert-pistachio-ring.jpg',
+    gallery: [
+      '/images/dessert-creme-brulee-tart.jpg',
+      '/images/dessert-mirror-tart.jpg',
+      '/images/dessert-chocolate-eclair.jpg',
+      '/images/dessert-roast-cube.jpg',
+      '/images/dessert-choux-stack.jpg',
+      '/images/bts-camera-closeup.jpg',
+    ],
+    description: 'High-conversion product photography for menus, delivery platforms, and social media. Clean, high-conversion product photography for menus, delivery platforms, and social media.'
+  },
 ]

@@ -34,8 +34,27 @@ function HeroSection() {
   
   return (
     <section className="relative min-h-screen w-full flex flex-col items-start justify-center px-6 md:px-16 lg:px-24 overflow-hidden">
+      {/* Background Layer (Three.js) */}
       <div className="absolute inset-0 z-0">
         <HeroScene />
+      </div>
+      
+      {/* Cinematic Image Layer (Split on Desktop, Background on Mobile) */}
+      <div className="absolute inset-0 md:left-auto md:right-0 w-full md:w-[45vw] h-full z-[1] pointer-events-none">
+        <div className="relative w-full h-full">
+          <BHImage
+            src="/images/pastry-cinnamon-roll.jpg"
+            alt="Artisan pastry — Buzzinhyd food photography"
+            fill
+            priority
+            className="object-cover object-center"
+          />
+          {/* Gradient Overlays */}
+          <div className="hidden md:block absolute inset-0 z-[2]" 
+               style={{ background: 'linear-gradient(to right, var(--bh-warm) 0%, transparent 40%, transparent 100%)' }} />
+          <div className="md:hidden absolute inset-0 z-[2]" 
+               style={{ background: 'linear-gradient(to bottom, rgba(250,246,239,0.7) 0%, rgba(250,246,239,0.4) 60%)' }} />
+        </div>
       </div>
       
       <motion.div 
@@ -86,8 +105,27 @@ function HeroSection() {
 }
 
 function ShowreelStrip() {
-  // Using generic placeholders since client provides images later
-  const stripImages = Array(8).fill('/images/placeholder.jpg')
+  const topImages = [
+    '/images/pastry-cinnamon-roll.jpg',
+    '/images/dessert-roast-cube.jpg',
+    '/images/pastry-chocolate-croissant.jpg',
+    '/images/dessert-pistachio-ring.jpg',
+    '/images/pastry-butter-croissant.jpg',
+    '/images/dessert-mirror-tart.jpg',
+    '/images/pastry-pain-raisin.jpg',
+    '/images/dessert-chocolate-eclair.jpg',
+  ]
+
+  const bottomImages = [
+    '/images/bts-live-kitchen-flash.jpg',
+    '/images/bts-fine-dining-spread.jpg',
+    '/images/bts-kitchen-shoot-wide.jpg',
+    '/images/bts-table-setting-elegant.jpg',
+    '/images/bts-ipad-pasta-flatlay.jpg',
+    '/images/bts-studio-softbox.jpg',
+    '/images/bts-camera-pov-pastry.jpg',
+    '/images/bts-studio-setup.jpg',
+  ]
 
   return (
     <section className="py-24 md:py-32 overflow-hidden bg-[var(--bh-warm)]">
@@ -103,9 +141,9 @@ function ShowreelStrip() {
         {/* Row 1: Left */}
         <div className="marquee-track marquee-track--left">
           <div className="flex gap-4 px-2">
-            {[...stripImages, ...stripImages].map((img, i) => (
-              <div key={`r1-${i}`} className="w-[260px] md:w-[320px] aspect-[4/3] shrink-0 relative">
-                <BHImage src={img} alt="Showreel moment" fill className="object-cover" />
+            {[...topImages, ...topImages].map((img, i) => (
+              <div key={`r1-${i}`} className="w-[300px] h-[225px] shrink-0 relative">
+                <BHImage src={img} alt="Buzzinhyd food marketing work" fill className="object-cover" />
               </div>
             ))}
           </div>
@@ -114,9 +152,9 @@ function ShowreelStrip() {
         {/* Row 2: Right (Desktop primarily) */}
         <div className="marquee-track marquee-track--right hidden md:flex">
           <div className="flex gap-4 px-2">
-            {[...stripImages, ...stripImages].map((img, i) => (
-              <div key={`r2-${i}`} className="w-[320px] aspect-[4/3] shrink-0 relative">
-                <BHImage src={img} alt="Showreel moment" fill className="object-cover" />
+            {[...bottomImages, ...bottomImages].map((img, i) => (
+              <div key={`r2-${i}`} className="w-[300px] h-[225px] shrink-0 relative">
+                <BHImage src={img} alt="Buzzinhyd food marketing work" fill className="object-cover" />
               </div>
             ))}
           </div>
@@ -152,8 +190,8 @@ function PhilosophySection() {
             
             <div className="philosophy-panel relative block w-full min-h-[300px]" data-aos="fade-up" data-aos-delay="0" data-aos-duration="800">
               <h3 className="font-display text-3xl mb-4" style={{ color: 'var(--bh-text)' }}>1. Stop the Scroll</h3>
-              <div className="w-full aspect-video relative mb-6">
-                <BHImage src="/images/placeholder.jpg" alt="Stop the scroll" fill className="object-cover" />
+              <div className="w-full md:w-3/4 aspect-video relative mb-6 overflow-hidden" style={{ height: '400px', maxWidth: '45%' }}>
+                <BHImage src="/images/bts-camera-closeup.jpg" alt="Stop the scroll" fill className="object-cover object-top" />
               </div>
               <p className="font-body text-base" style={{ color: 'var(--bh-muted)' }}>
                 High-contrast, cinematic visuals engineered to interrupt the endless feed and command absolute attention within the first second.
@@ -162,8 +200,8 @@ function PhilosophySection() {
 
             <div className="philosophy-panel relative block w-full min-h-[300px]" data-aos="fade-up" data-aos-delay="150" data-aos-duration="800">
               <h3 className="font-display text-3xl mb-4" style={{ color: 'var(--bh-text)' }}>2. Build Connection</h3>
-              <div className="w-full aspect-video relative mb-6">
-                <BHImage src="/images/placeholder.jpg" alt="Build connection" fill className="object-cover" />
+              <div className="w-full md:w-3/4 aspect-video relative mb-6 overflow-hidden" style={{ height: '400px', maxWidth: '45%' }}>
+                <BHImage src="/images/chef-michelin-portrait.jpg" alt="Build connection" fill className="object-cover object-top" />
               </div>
               <p className="font-body text-base" style={{ color: 'var(--bh-muted)' }}>
                 We document the heat of the kitchen, the precision of the plating, and the atmosphere of the room. People buy the experience.
@@ -172,8 +210,8 @@ function PhilosophySection() {
 
             <div className="philosophy-panel relative block w-full min-h-[300px]" data-aos="fade-up" data-aos-delay="300" data-aos-duration="800">
               <h3 className="font-display text-3xl mb-4" style={{ color: 'var(--bh-text)' }}>3. Drive Footfall</h3>
-              <div className="w-full aspect-video relative mb-6">
-                <BHImage src="/images/placeholder.jpg" alt="Drive footfall" fill className="object-cover" />
+              <div className="w-full md:w-3/4 aspect-video relative mb-6 overflow-hidden" style={{ height: '400px', maxWidth: '45%' }}>
+                <BHImage src="/images/campaign-strawberry-spread.jpg" alt="Drive footfall" fill className="object-cover object-top" />
               </div>
               <p className="font-body text-base" style={{ color: 'var(--bh-muted)' }}>
                 Likes are vanity. Reservations are sanity. Every piece of content is strategically designed to convert attention into action.
@@ -225,44 +263,59 @@ function FeaturedWork({ isMobile }: { isMobile: boolean }) {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {featured.map((p, i) => (
-            <Link 
-              href={`/work/${p.slug}`} 
-              key={p.slug}
-              className="block will-transform"
-              data-aos="fade-up"
-              data-aos-delay={(i % 3) * 100}
-            >
-              <div 
-                className="flex flex-col overflow-hidden rounded-none border border-[var(--bh-gold)] border-opacity-10 bg-[var(--bh-cream)] h-[450px] group p-0 transition-transform duration-300 ease-out"
-                style={{ boxShadow: '0 4px 32px rgba(160,120,48,0.06)' }}
-                onMouseMove={(e) => handleMouseMove(e, e.currentTarget)}
-                onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
+          {featured.map((p, i) => {
+            const isDailyStories = p.slug === 'daily-creative-stories';
+            
+            return (
+              <Link 
+                href={`/work/${p.slug}`} 
+                key={p.slug}
+                className="block will-transform"
+                data-aos="fade-up"
+                data-aos-delay={(i % 3) * 100}
               >
-                <div className="relative w-full h-[60%] overflow-hidden bg-[var(--bh-charcoal)]">
-                  <BHImage 
-                    src={p.images[0].src} 
-                    alt={p.title} 
-                    fill 
-                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out" 
-                  />
+                <div 
+                  className="flex flex-col overflow-hidden rounded-none border border-[var(--bh-gold)] border-opacity-10 bg-[var(--bh-cream)] h-[480px] group p-0 transition-transform duration-300 ease-out"
+                  style={{ boxShadow: '0 4px 32px rgba(160,120,48,0.06)' }}
+                  onMouseMove={(e) => handleMouseMove(e, e.currentTarget)}
+                  onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
+                >
+                  <div className={`relative w-full h-[60%] overflow-hidden ${isDailyStories ? 'bg-[var(--bh-warm)] flex items-center justify-center p-6' : 'bg-[var(--bh-charcoal)]'}`}>
+                    {isDailyStories ? (
+                      <div className="relative" style={{ width: '45%', aspectRatio: '9/16', borderRadius: '14px', border: '3px solid var(--bh-gold)', overflow: 'hidden', boxShadow: '0 8px 32px rgba(160,120,48,0.2)' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', animation: 'storyScroll 8s infinite', height: '400%' }}>
+                          <img src="/images/campaign-roast-new-desserts.jpg" alt="Story" className="w-full h-1/4 object-cover" />
+                          <img src="/images/campaign-valentines-bear.jpg" alt="Story" className="w-full h-1/4 object-cover" />
+                          <img src="/images/campaign-choco-strawberry.jpg" alt="Story" className="w-full h-1/4 object-cover" />
+                          <img src="/images/campaign-strawberry-display.jpg" alt="Story" className="w-full h-1/4 object-cover" />
+                        </div>
+                      </div>
+                    ) : (
+                      <BHImage 
+                        src={p.heroImage} 
+                        alt={p.title} 
+                        fill 
+                        className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out" 
+                      />
+                    )}
+                  </div>
+                  <div className="p-6 flex flex-col flex-1">
+                    <span className="font-mono text-[10px] tracking-widest uppercase mb-3" style={{ color: 'var(--bh-gold)' }}>
+                      {p.category}
+                    </span>
+                    <h3 className="font-display text-2xl mb-2" style={{ color: 'var(--bh-text)' }}>{p.title}</h3>
+                    <p className="font-body text-[13px] line-clamp-3 mt-auto" style={{ color: 'var(--bh-muted)' }}>
+                      {p.description}
+                    </p>
+                    <div className="w-full h-[1px] bg-[rgba(160,120,48,0.15)] mt-4 mb-4" />
+                    <span className="font-mono text-[11px] uppercase tracking-wider text-[var(--bh-gold)] flex items-center gap-2 group-hover:gap-4 transition-all duration-300">
+                      View Project <span className="text-[14px]">&rarr;</span>
+                    </span>
+                  </div>
                 </div>
-                <div className="p-6 flex flex-col flex-1">
-                  <span className="font-mono text-[10px] tracking-widest uppercase mb-3" style={{ color: 'var(--bh-gold)' }}>
-                    {p.category}
-                  </span>
-                  <h3 className="font-display text-2xl mb-2" style={{ color: 'var(--bh-text)' }}>{p.title}</h3>
-                  <p className="font-body text-sm line-clamp-2 mt-auto" style={{ color: 'var(--bh-muted)' }}>
-                    {p.description}
-                  </p>
-                  <div className="w-full h-[1px] bg-[rgba(160,120,48,0.15)] mt-4 mb-4" />
-                  <span className="font-mono text-[11px] uppercase tracking-wider text-[var(--bh-gold)] flex items-center gap-2 group-hover:gap-4 transition-all duration-300">
-                    View Project <span className="text-[14px]">&rarr;</span>
-                  </span>
-                </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            )
+          })}
         </div>
 
       </div>

@@ -181,6 +181,18 @@ section { padding-top: 120px; padding-bottom: 120px; }
   to   { transform: translateX(0); }
 }
 
+@keyframes storyScroll {
+  0%   { transform: translateY(0%) }
+  20%  { transform: translateY(0%) }
+  25%  { transform: translateY(-25%) }
+  45%  { transform: translateY(-25%) }
+  50%  { transform: translateY(-50%) }
+  70%  { transform: translateY(-50%) }
+  75%  { transform: translateY(-75%) }
+  95%  { transform: translateY(-75%) }
+  100% { transform: translateY(0%) }
+}
+
 .marquee-track {
   display: flex;
   width: max-content;

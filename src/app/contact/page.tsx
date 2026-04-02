@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import { Instagram, Youtube } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { BHImage } from '@/components/ui/BHImage'
 
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -21,8 +22,19 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="bg-[var(--bh-warm)] text-[var(--bh-text)] min-h-screen">
-      <section className="w-full pt-32 pb-24">
+    <div className="bg-[var(--bh-warm)] text-[var(--bh-text)] min-h-screen relative overflow-hidden">
+      
+      {/* Background Texture */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.04]">
+        <BHImage 
+          src="/images/bts-camera-closeup.jpg" 
+          alt="Texture" 
+          fill 
+          className="object-cover grayscale" 
+        />
+      </div>
+
+      <section className="w-full pt-32 pb-24 relative z-10">
         <div className="w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
           <div className="flex flex-col md:flex-row gap-16 md:gap-24 h-full relative z-10">
             

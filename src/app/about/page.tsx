@@ -12,7 +12,7 @@ export default function AboutPage() {
       
       {/* Editorial Hero */}
       <section className="w-full pt-32 pb-24">
-        <div className="w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-16 flex flex-col md:flex-row gap-12 items-center min-h-[70vh]">
+        <div className="w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-16 flex flex-col md:flex-row gap-12 items-center min-h-[80vh]">
           <div className="w-full md:w-5/12">
             <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-[var(--bh-gold)] mb-8 block">
               About The Agency
@@ -21,8 +21,8 @@ export default function AboutPage() {
               We Are<br />Buzzinhyd.
             </h1>
           </div>
-          <div className="w-full md:w-7/12 h-[60vh] md:h-full relative overflow-hidden transform-gpu md:rotate-1">
-            <BHImage src="/images/placeholder.jpg" alt="Team at Buzzinhyd" fill priority className="object-cover" />
+          <div className="w-full md:w-7/12 h-[60vh] md:h-[80vh] relative overflow-hidden transform-gpu">
+            <BHImage src="/images/chef-plating-dark.jpg" alt="Chef plating — Buzzinhyd" fill priority className="object-cover object-top" />
           </div>
         </div>
       </section>
@@ -56,40 +56,40 @@ export default function AboutPage() {
                 </p>
               </div>
             </div>
-            <div className="w-full md:w-1/2 h-[500px] relative">
-              <BHImage src="/images/placeholder.jpg" alt="Behind the scenes shoot" fill className="object-cover" />
+            <div className="w-full md:w-1/2 h-[500px] relative overflow-hidden">
+              <BHImage src="/images/bts-studio-setup.jpg" alt="Behind the scenes shoot" fill className="object-cover" />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Team */}
-      <section className="w-full py-24 md:py-32 bg-[var(--bh-cream)]">
-        <div className="w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
-          <div className="mb-20">
-            <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-[var(--bh-gold)] mb-4 block">
-              The Collective
-            </span>
-            <h2 className="font-display text-5xl md:text-6xl text-[var(--bh-text)]">
-              Core Team
-            </h2>
+      {/* Team / Work Evidence strip */}
+      <section className="w-full py-0">
+        <div className="grid grid-cols-1 md:grid-cols-3">
+          <div className="relative h-[300px] group">
+            <BHImage src="/images/bts-kitchen-shoot-wide.jpg" alt="On Location" fill className="object-cover" />
+            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+              <span className="font-mono text-white tracking-widest uppercase">On Location</span>
+            </div>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
-            {TEAM.map((member, i) => (
-              <div key={i} className="flex flex-col items-center text-center group cursor-pointer">
-                <div className="w-64 h-64 md:w-72 md:h-72 rounded-full overflow-hidden relative mb-8 grayscale group-hover:grayscale-0 transition-all duration-700">
-                  <BHImage src={member.img} alt={member.name} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
-                </div>
-                <h3 className="font-display text-3xl text-[var(--bh-text)] mb-2">{member.name}</h3>
-                <span className="font-mono text-[12px] text-[var(--bh-gold)] tracking-wider uppercase">
-                  {member.role}
-                </span>
-              </div>
-            ))}
+          <div className="relative h-[300px] group border-x border-[var(--bh-warm)]">
+            <BHImage src="/images/bts-ipad-pasta-flatlay.jpg" alt="The Process" fill className="object-cover" />
+            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+              <span className="font-mono text-white tracking-widest uppercase">The Process</span>
+            </div>
+          </div>
+          <div className="relative h-[300px] group">
+            <BHImage src="/images/bts-table-setting-elegant.jpg" alt="The Result" fill className="object-cover" />
+            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+              <span className="font-mono text-white tracking-widest uppercase">The Result</span>
+            </div>
           </div>
         </div>
       </section>
+      
+    </div>
+  )
+}
       
     </div>
   )
