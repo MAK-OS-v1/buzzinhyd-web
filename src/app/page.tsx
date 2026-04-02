@@ -10,7 +10,7 @@ import { BHImage } from '@/components/ui/BHImage'
 import { projects } from '@/data/projects'
 import { useIsMobile } from '@/hooks/useIsMobile'
 
-const HeroScene = dynamic(() => import('@/components/three/HeroScene'), { ssr: false })
+const HeroScene = dynamic(() => import('@/components/three/HeroScene'), { ssr: false, loading: () => <div className="mobile-hero-bg absolute inset-0" style={{ background: 'radial-gradient(ellipse at 30% 50%, #F5EDD8 0%, var(--bh-warm) 60%)' }} /> })
 
 export default function Home() {
   const isMobile = useIsMobile()
@@ -32,58 +32,42 @@ function HeroSection() {
   const { scrollY } = useScroll()
   const yHeadline = useTransform(scrollY, [0, 1000], [0, 200])
   
-  const headlineLetters = "We Don't Sell Food.".split('')
-  const sublineLetters = "We Sell Feelings.".split('')
-
-  const letterVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
-  }
-
   return (
-    <section className="relative w-full h-screen overflow-hidden flex items-center justify-center">
-      <div className="mobile-hero-bg" />
-      <HeroScene />
+    <section className="relative min-h-screen w-full flex flex-col items-start justify-center px-6 md:px-16 lg:px-24 overflow-hidden">
+      <div className="absolute inset-0 z-0">
+        <HeroScene />
+      </div>
       
       <motion.div 
-        className="relative z-10 text-center flex flex-col items-center px-4"
+        className="relative z-10 text-left flex flex-col items-start px-4"
         style={{ y: yHeadline }}
       >
         <span className="font-mono text-[11px] tracking-[0.3em] uppercase mb-8 hero-label" style={{ color: 'var(--bh-gold)' }}>
           Hyderabad&apos;s Premier
         </span>
         
-        <div className="flex flex-col items-center gap-2 md:gap-4 mb-8">
-          <motion.h1 
-            className="font-display text-[52px] md:text-[96px] leading-[0.9] overflow-hidden flex flex-wrap justify-center whitespace-pre"
-            style={{ color: 'var(--bh-text)' }}
-            initial="hidden"
-            animate="visible"
-            transition={{ staggerChildren: 0.04, delayChildren: 0.2 }}
-          >
-            {headlineLetters.map((char, index) => (
-              <motion.span key={`h-${index}`} variants={letterVariants} className="inline-block">
-                {char}
-              </motion.span>
-            ))}
-          </motion.h1>
-          
-          <motion.h2 
-            className="font-display text-[52px] md:text-[96px] leading-[0.9] overflow-hidden flex flex-wrap justify-center whitespace-pre"
-            style={{ color: 'var(--bh-gold)' }}
-            initial="hidden"
-            animate="visible"
-            transition={{ staggerChildren: 0.04, delayChildren: 0.6 }}
-          >
-            {sublineLetters.map((char, index) => (
-              <motion.span key={`s-${index}`} variants={letterVariants} className="inline-block">
-                {char}
-              </motion.span>
-            ))}
-          </motion.h2>
-        </div>
+        <div className="flex flex-col items-start gap-2 md:gap-4 mb-8">
+           <motion.h1
+             initial={{ opacity: 0, y: 40 }}
+             animate={{ opacity: 1, y: 0 }}
+             transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.3 }}
+             style={{ fontFamily: 'var(--font-display)' }}
+             className="text-[52px] md:text-[96px] leading-[0.9] text-[var(--bh-text)]"
+           >
+             We Don&apos;t Sell Food.
+           </motion.h1>
+           <motion.h1
+             initial={{ opacity: 0, y: 40 }}
+             animate={{ opacity: 1, y: 0 }}
+             transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.6 }}
+             style={{ fontFamily: 'var(--font-display)', color: 'var(--bh-gold)' }}
+             className="text-[52px] md:text-[96px] leading-[0.9]"
+           >
+             We Sell Feelings.
+           </motion.h1>
+         </div>
 
-        <p className="font-body text-sm md:text-[15px] max-w-md hero-sub mb-10" style={{ color: 'var(--bh-muted)' }}>
+        <p className="font-body text-sm md:text-[15px] max-w-md hero-sub mb-10 text-left" style={{ color: 'var(--bh-muted)' }}>
           Restaurant Marketing · Food Photography · Content Strategy
         </p>
 
@@ -143,34 +127,9 @@ function ShowreelStrip() {
 }
 
 function PhilosophySection() {
-  const containerRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    // GSAP scroll trigger for panels
-    const panels = gsap.utils.toArray('.phil-panel') as HTMLElement[]
-    
-    panels.forEach((panel) => {
-      gsap.fromTo(panel, 
-        { opacity: 0, y: 60 },
-        { 
-          opacity: 1, 
-          y: 0, 
-          duration: 1, 
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: panel,
-            start: "top 80%",
-            end: "top 30%",
-            toggleActions: "play none none reverse"
-          }
-        }
-      )
-    })
-  }, [])
-
   return (
-    <section className="relative w-full" ref={containerRef}>
-      <div className="container py-24 md:py-32">
+    <section className="relative w-full">
+      <div className="w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-24 md:py-32">
         <div className="flex flex-col md:flex-row gap-16 md:gap-24 relative">
           
           {/* Left Sticky Content */}
@@ -191,7 +150,7 @@ function PhilosophySection() {
           {/* Right Scroll Content */}
           <div className="w-full md:w-7/12 flex flex-col gap-24 md:gap-48 mt-12 md:mt-24">
             
-            <div className="phil-panel philosophy-panel">
+            <div className="philosophy-panel relative block w-full min-h-[300px]" data-aos="fade-up" data-aos-delay="0" data-aos-duration="800">
               <h3 className="font-display text-3xl mb-4" style={{ color: 'var(--bh-text)' }}>1. Stop the Scroll</h3>
               <div className="w-full aspect-video relative mb-6">
                 <BHImage src="/images/placeholder.jpg" alt="Stop the scroll" fill className="object-cover" />
@@ -201,7 +160,7 @@ function PhilosophySection() {
               </p>
             </div>
 
-            <div className="phil-panel philosophy-panel">
+            <div className="philosophy-panel relative block w-full min-h-[300px]" data-aos="fade-up" data-aos-delay="150" data-aos-duration="800">
               <h3 className="font-display text-3xl mb-4" style={{ color: 'var(--bh-text)' }}>2. Build Connection</h3>
               <div className="w-full aspect-video relative mb-6">
                 <BHImage src="/images/placeholder.jpg" alt="Build connection" fill className="object-cover" />
@@ -211,7 +170,7 @@ function PhilosophySection() {
               </p>
             </div>
 
-            <div className="phil-panel philosophy-panel">
+            <div className="philosophy-panel relative block w-full min-h-[300px]" data-aos="fade-up" data-aos-delay="300" data-aos-duration="800">
               <h3 className="font-display text-3xl mb-4" style={{ color: 'var(--bh-text)' }}>3. Drive Footfall</h3>
               <div className="w-full aspect-video relative mb-6">
                 <BHImage src="/images/placeholder.jpg" alt="Drive footfall" fill className="object-cover" />
@@ -254,7 +213,7 @@ function FeaturedWork({ isMobile }: { isMobile: boolean }) {
 
   return (
     <section className="section bg-[var(--bh-warm)]">
-      <div className="container">
+      <div className="w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
         
         <div className="flex flex-col items-center text-center mb-24">
           <span className="font-mono text-[11px] uppercase tracking-[0.3em] mb-4" style={{ color: 'var(--bh-gold)' }}>
@@ -265,7 +224,7 @@ function FeaturedWork({ isMobile }: { isMobile: boolean }) {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {featured.map((p, i) => (
             <Link 
               href={`/work/${p.slug}`} 
@@ -275,7 +234,8 @@ function FeaturedWork({ isMobile }: { isMobile: boolean }) {
               data-aos-delay={(i % 3) * 100}
             >
               <div 
-                className="bh-card w-full h-[450px] flex flex-col group p-2 transition-transform duration-300 ease-out"
+                className="flex flex-col overflow-hidden rounded-none border border-[var(--bh-gold)] border-opacity-10 bg-[var(--bh-cream)] h-[450px] group p-0 transition-transform duration-300 ease-out"
+                style={{ boxShadow: '0 4px 32px rgba(160,120,48,0.06)' }}
                 onMouseMove={(e) => handleMouseMove(e, e.currentTarget)}
                 onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
               >

@@ -5,6 +5,24 @@ import { useState } from 'react'
 
 export function BHImage({ src, alt, priority = false, className = '', ...props }: ImageProps) {
   const [isLoaded, setIsLoaded] = useState(false)
+  const [hasError, setHasError] = useState(false)
+
+  if (hasError) {
+    return (
+      <div 
+        className={`w-full h-full min-h-32 bg-[var(--bh-cream)] border border-[var(--bh-gold)] border-opacity-20 flex items-center justify-center ${className}`}
+      >
+        <span style={{ 
+          fontFamily: 'var(--font-mono)', 
+          fontSize: '11px', 
+          color: 'var(--bh-muted)',
+          letterSpacing: '0.2em'
+        }}>
+          IMAGE PLACEHOLDER
+        </span>
+      </div>
+    )
+  }
 
   return (
     <div className={`relative overflow-hidden ${className}`}>
@@ -25,6 +43,7 @@ export function BHImage({ src, alt, priority = false, className = '', ...props }
           isLoaded ? 'opacity-100' : 'opacity-0'
         }`}
         onLoad={() => setIsLoaded(true)}
+        onError={() => setHasError(true)}
         {...props}
       />
     </div>

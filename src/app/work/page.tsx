@@ -21,8 +21,9 @@ export default function WorkPage() {
   }
 
   return (
-    <div className="pt-32 pb-24 min-h-screen bg-[var(--bh-warm)] text-[var(--bh-text)]">
-      <div className="container">
+    <div className="bg-[var(--bh-warm)] text-[var(--bh-text)] min-h-screen">
+      <section className="w-full pt-32 pb-24">
+        <div className="w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
         
         {/* Hero */}
         <div className="flex flex-col items-center text-center mb-16 md:mb-24">
@@ -98,7 +99,8 @@ export default function WorkPage() {
           </AnimatePresence>
         </div>
 
-      </div>
+        </div>
+      </section>
     </div>
   )
 }

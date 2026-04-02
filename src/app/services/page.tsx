@@ -47,8 +47,9 @@ export default function ServicesPage() {
   }
 
   return (
-    <div className="pt-32 pb-32 min-h-screen bg-[var(--bh-warm)] text-[var(--bh-text)]">
-      <div className="container max-w-4xl">
+    <div className="bg-[var(--bh-warm)] text-[var(--bh-text)] min-h-screen">
+      <section className="w-full pt-32 pb-32">
+        <div className="w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
         
         {/* Hero */}
         <div className="mb-24 text-center md:text-left">
@@ -115,7 +116,8 @@ export default function ServicesPage() {
           })}
         </div>
 
-      </div>
+        </div>
+      </section>
     </div>
   )
 }
